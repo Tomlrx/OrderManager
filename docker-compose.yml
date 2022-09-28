@@ -1,0 +1,32 @@
+services:
+  app: 
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+        - wing-database
+    networks:
+      - mongo-server
+    volumes:
+      - ./back/src:/srv/app/src
+    environment:
+      HOST: localhost
+      PORT: 3000
+
+
+  wing-database:
+    container_name: wing-database
+    image: mongo:latest
+    restart: on-failure
+    ports:
+      - 27017:27017
+    networks:
+      - mongo-server
+    volumes:
+      - ~/wing_mongo_data:/wing/db
+
+networks:
+  mongo-server:
+    driver: bridge
