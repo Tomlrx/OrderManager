@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/export', (req, res) => {
-    const { format } = req.query
     const parcelcontroller = new ParcelController();
 
     parcelcontroller.exportParcels()

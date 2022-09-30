@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
 })
 
 router.post('/multiple', (req, res) => {
-    const orders = req.body.orders;
+    const orders = req.body;
     if (!orders) res.status(400).send("Missing order information");
     const orderController = new OrderController();
 
